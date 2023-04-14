@@ -110,6 +110,6 @@ public class MenuManager : MonoBehaviour
     }
     void GoToGithub()
     {
-        Application.OpenURL("https://github.com/vardgrig/Chess");
+        Application.OpenURL("https://github.com/vardgrig/Chessity");
     }
 }
