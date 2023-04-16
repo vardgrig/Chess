@@ -1,0 +1,14 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Style%20Sheets/botSelectionView.uss?fileID=7433441132597879392&amp;guid=6c6f5972551560d4baa9e7435e06a061&amp;type=3#botSelectionView" />
+    <ui:VisualElement name="Background" style="width: 100%; height: 100%; background-color: rgb(44, 62, 80); justify-content: center; align-items: center;">
+        <ui:VisualElement name="Container" style="width: 744px; height: 660px; align-items: center; justify-content: space-between;">
+            <ui:Label tabindex="-1" text="Play as White" display-tooltip-when-elided="true" name="PlayAsText" class="label" style="width: 447px; height: 72px;" />
+            <ui:VisualElement name="PieceSelection" style="-unity-text-align: upper-center; flex-direction: row; justify-content: space-around; width: 60%; height: 30%; align-items: center;">
+                <ui:Button display-tooltip-when-elided="true" name="WhitePiece" class="piece" style="background-image: url(&apos;project://database/Assets/Sprites/Sprites/Pieces.png?fileID=5815346444209245126&amp;guid=2345a1e863e9d4c6686f1e9f1a23d754&amp;type=3#King W&apos;);" />
+                <ui:Button display-tooltip-when-elided="true" name="BlackPiece" class="piece" style="background-image: url(&apos;project://database/Assets/Sprites/Sprites/Pieces.png?fileID=6713323665980220584&amp;guid=2345a1e863e9d4c6686f1e9f1a23d754&amp;type=3#King B&apos;);" />
+            </ui:VisualElement>
+            <ui:Button text="Start Game" display-tooltip-when-elided="true" name="StartGame" class="button" style="font-size: 44px; width: 416px;" />
+            <ui:Button text="Back" display-tooltip-when-elided="true" name="Back" class="button" style="font-size: 50px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

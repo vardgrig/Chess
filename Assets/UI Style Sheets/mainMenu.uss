@@ -1,0 +1,27 @@
+.button {
+    width: 300px;
+    height: 80px;
+    background-color: rgba(243, 156, 18, 255);
+    font-size: 50px;
+    -unity-text-align: middle-center;
+    color: rgba(236, 240, 241, 255);
+    -unity-font-style: bold;
+    -unity-font: url('project://database/Assets/Fonts/Roboto-Bold.ttf?fileID=12800000&guid=9c83cfc06c83a2542b03498a9ca3f5c9&type=3#Roboto-Bold');
+    -unity-font-definition: url('project://database/Assets/Fonts/Roboto-Bold%20SDF.asset?fileID=11400000&guid=c5847b10bbced934a98f8de455d761a1&type=2#Roboto-Bold SDF');
+    -unity-text-outline-width: 0;
+    text-shadow: 0 0 0 rgba(188, 52, 52, 255);
+    -unity-text-outline-color: rgba(255, 255, 255, 255);
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-left-width: 5px;
+    border-right-width: 5px;
+    border-top-width: 5px;
+    border-bottom-width: 5px;
+    border-left-color: rgba(211, 84, 0, 255);
+    border-right-color: rgba(211, 84, 0, 255);
+    border-top-color: rgba(211, 84, 0, 255);
+    border-bottom-color: rgba(211, 84, 0, 255);
+    -unity-background-image-tint-color: rgba(255, 255, 255, 255);
+}
