@@ -1,51 +1,42 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class PanelManager : MonoBehaviour
 {
+    [SerializeField] UIDocument m_UIDocument;
     [SerializeField] PanelView mainMenuPanel;
-    [SerializeField] PanelView botselectionPanel;
-    List<string> panelNames = new();
+    [SerializeField] PanelView botSelectionPanel;
 
-    private void OnEnable()
-    {
-        mainMenuPanel.GetComponent<MainMenuToolkitManager>().OnBotSelectionMenuEnter += ShowBotSelectionMenu;
-        botselectionPanel.GetComponent<BotSelectionViewManager>().OnMainMenuBack += ShowMainMenu;
-    }
+    [SerializeField] VisualTreeAsset menuAsset;
+    [SerializeField] VisualTreeAsset botSelectionAsset;
 
-    private void OnDestroy()
+
+    private void Awake()
     {
-        mainMenuPanel.GetComponent<MainMenuToolkitManager>().OnBotSelectionMenuEnter -= ShowBotSelectionMenu;
-        botselectionPanel.GetComponent<BotSelectionViewManager>().OnMainMenuBack -= ShowMainMenu;
-    }
-    void Start()
-    {
-        panelNames.Add(mainMenuPanel.name);
-        panelNames.Add(botselectionPanel.name);
-        ShowPanel(mainMenuPanel);
-    }
-    private void ShowMainMenu()
-    {
-        ShowPanel(mainMenuPanel);
+        ShowMenu();
     }
 
-    void ShowBotSelectionMenu()
+    private void Update()
     {
-        ShowPanel(botselectionPanel);
-    }
-    void ShowPanel(PanelView panel)
-    {
-        foreach(string panelName in panelNames)
+        if(Input.GetKeyDown(KeyCode.B)) 
         {
-            if(panelName == panel.name)
-            {
-                panel.GetUIDocument().rootVisualElement.style.display = DisplayStyle.Flex;
-            }
-            else
-            {
-                panel.GetUIDocument().rootVisualElement.style.display = DisplayStyle.None;
-            }
+            ShowBotSelectionMenu();
         }
+        else if(Input.GetKeyDown(KeyCode.A))
+        {
+            ShowMenu();
+        }
+    }
+    public void ShowMenu()
+    {
+        m_UIDocument.visualTreeAsset = menuAsset;
+        mainMenuPanel.enabled = true;
+        botSelectionPanel.enabled = false;
+    }
+    public void ShowBotSelectionMenu()
+    {
+        m_UIDocument.visualTreeAsset = botSelectionAsset;
+        mainMenuPanel.enabled = false;
+        botSelectionPanel.enabled = true;
     }
 }

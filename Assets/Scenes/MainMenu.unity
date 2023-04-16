@@ -165,7 +165,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 682980725}
-  - component: {fileID: 682980724}
   - component: {fileID: 682980726}
   m_Layer: 5
   m_Name: MainMenu
@@ -174,23 +173,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &682980724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 682980723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_PanelSettings: {fileID: 11400000, guid: 1378ba3b32c89e74e8cf391077a614db, type: 2}
-  m_ParentUI: {fileID: 0}
-  sourceAsset: {fileID: 9197481963319205126, guid: 96c86cd4751ac5b4c956a21f1b3a55ca,
-    type: 3}
-  m_SortingOrder: 0
 --- !u!4 &682980725
 Transform:
   m_ObjectHideFlags: 0
@@ -213,12 +195,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 682980723}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ba049c276ba2d6a449fd8213eb924050, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UIDocument: {fileID: 682980724}
+  m_UIDocument: {fileID: 1060208478}
+  m_PanelManager: {fileID: 1060208477}
 --- !u!1 &719759564
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,6 +279,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1060208476}
   - component: {fileID: 1060208477}
+  - component: {fileID: 1060208478}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -330,8 +314,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c815de7f9890e444ea1d5beadde39646, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_UIDocument: {fileID: 1060208478}
   mainMenuPanel: {fileID: 682980726}
-  botselectionPanel: {fileID: 2093401930}
+  botSelectionPanel: {fileID: 2093401930}
+  menuAsset: {fileID: 9197481963319205126, guid: 96c86cd4751ac5b4c956a21f1b3a55ca,
+    type: 3}
+  botSelectionAsset: {fileID: 9197481963319205126, guid: 70071d10abacc5545989869bfcc4a818,
+    type: 3}
+--- !u!114 &1060208478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1060208475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PanelSettings: {fileID: 11400000, guid: 1378ba3b32c89e74e8cf391077a614db, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 0}
+  m_SortingOrder: 0
 --- !u!1 &2067169633
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,7 +430,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2093401929}
-  - component: {fileID: 2093401931}
   - component: {fileID: 2093401930}
   m_Layer: 5
   m_Name: BotSelectionMenu
@@ -461,22 +465,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ca2768d1ab3e814fb757f5876424834, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UIDocument: {fileID: 2093401931}
+  m_UIDocument: {fileID: 1060208478}
+  m_PanelManager: {fileID: 1060208477}
   m_GameSettings: {fileID: 11400000, guid: abcf9d1036b40a5449960098e6a0286c, type: 2}
---- !u!114 &2093401931
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2093401928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_PanelSettings: {fileID: 11400000, guid: 1378ba3b32c89e74e8cf391077a614db, type: 2}
-  m_ParentUI: {fileID: 0}
-  sourceAsset: {fileID: 9197481963319205126, guid: 70071d10abacc5545989869bfcc4a818,
-    type: 3}
-  m_SortingOrder: 0

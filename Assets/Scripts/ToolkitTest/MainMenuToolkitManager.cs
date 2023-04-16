@@ -1,26 +1,32 @@
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
-public delegate void OnBotSelectionMenuEnter();
 public class MainMenuToolkitManager : PanelView
 {
     [SerializeField] UIDocument m_UIDocument;
+    [SerializeField] PanelManager m_PanelManager;
     
     Button m_playBot;
     Button m_playPlayer;
     Button m_exit;
 
-    public event OnBotSelectionMenuEnter OnBotSelectionMenuEnter;
+    void OnEnable()
+    {
+        GetElementReference();
+        AssignButtons();
+    }
+    void OnDisable()
+    {
+        RemoveButtonListeners();
+    }
 
-    void Start()
+    void GetElementReference()
     {
         var rootElement = m_UIDocument.rootVisualElement;
         m_playBot = rootElement.Q<Button>("PlayBot");
         m_playPlayer = rootElement.Q<Button>("PlayPlayer");
         m_exit = rootElement.Q<Button>("Exit");
-        AssignButtons();
     }
-
     public override UIDocument GetUIDocument()
     {
         return m_UIDocument;
@@ -32,10 +38,16 @@ public class MainMenuToolkitManager : PanelView
         m_playPlayer.clickable.clicked += OnPlayPlayer;
         m_exit.clickable.clicked += OnExit;
     }
+    void RemoveButtonListeners()
+    {
+        m_playBot.clickable.clicked -= OnPlayBot;
+        m_playPlayer.clickable.clicked -= OnPlayPlayer;
+        m_exit.clickable.clicked -= OnExit;
+    }
     void OnPlayBot()
     {
         Debug.Log("Play Bot");
-        OnBotSelectionMenuEnter?.Invoke();
+        m_PanelManager.ShowBotSelectionMenu();
     }
 
     void OnPlayPlayer()

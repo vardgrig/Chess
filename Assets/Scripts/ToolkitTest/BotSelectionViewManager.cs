@@ -2,11 +2,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
-public delegate void OnMainMenuBack();
 public class BotSelectionViewManager : PanelView
 {
     const string CHESS_GAME_KEY = "ChessGame";
     [SerializeField] UIDocument m_UIDocument;
+    [SerializeField] PanelManager m_PanelManager;
     [SerializeField] GameSettings m_GameSettings;
     Label m_PlayAsLabel;
     Button m_WhitePiece;
@@ -14,19 +14,31 @@ public class BotSelectionViewManager : PanelView
     Button m_StartGame;
     Button m_Back;
 
-    public event OnMainMenuBack OnMainMenuBack;
-
-    private void Start()
+    void Awake()
     {
-        var rootElement = m_UIDocument.rootVisualElement; // doesn't work
+        
+    }
+    void OnEnable()
+    {
+        GetElementReference();
+        AssignButtons();
+        OnWhitePieceSelected();
+    }
+
+    void OnDisable()
+    {
+        RemoveButtonListeners();
+    }
+
+    void GetElementReference()
+    {
+        var rootElement = m_UIDocument.rootVisualElement;
 
         m_PlayAsLabel = rootElement.Q<Label>("PlayAsText");
         m_WhitePiece = rootElement.Q<Button>("WhitePiece");
         m_BlackPiece = rootElement.Q<Button>("BlackPiece");
         m_StartGame = rootElement.Q<Button>("StartGame");
         m_Back = rootElement.Q<Button>("Back");
-        AssignButtons();
-        OnWhitePieceSelected();
     }
     public override UIDocument GetUIDocument()
     {
@@ -39,6 +51,13 @@ public class BotSelectionViewManager : PanelView
         m_BlackPiece.clickable.clicked += OnBlackPieceSelected;
         m_StartGame.clickable.clicked += OnStartGame;
         m_Back.clickable.clicked += BackToMenu;
+    }
+    void RemoveButtonListeners()
+    {
+        m_WhitePiece.clickable.clicked -= OnWhitePieceSelected;
+        m_BlackPiece.clickable.clicked -= OnBlackPieceSelected;
+        m_StartGame.clickable.clicked -= OnStartGame;
+        m_Back.clickable.clicked -= BackToMenu;
     }
     void SetLabelText(bool isWhiteSelected)
     {
@@ -74,6 +93,6 @@ public class BotSelectionViewManager : PanelView
     void BackToMenu()
     {
         Debug.Log("Back to Main Menu");
-        OnMainMenuBack?.Invoke();
+        m_PanelManager.ShowMenu();
     }
 }
