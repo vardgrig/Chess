@@ -9,15 +9,13 @@ namespace Chess.Game
 {
     public class GameManager : MonoBehaviour
     {
-        public enum Result { Playing, WhiteIsMated, BlackIsMated, Stalemate, Repetition, FiftyMoveRule, InsufficientMaterial }
+        public enum Result { Playing, WhiteIsMated, BlackIsMated, Stalemate, Repetition, FiftyMoveRule, InsufficientMaterial, WhiteLosesInTime, BlackLosesInTime }
 
         public event Action onPositionLoaded;
         public event Action<Move> onMoveMade;
+        public event Action<Result> OnGameEnds;
 
         public enum PlayerType { Human, AI }
-
-        //public bool loadCustomPosition;
-        //public string customPosition = "";
 
         private PlayerType whitePlayerType;
         private PlayerType blackPlayerType;
@@ -76,8 +74,23 @@ namespace Chess.Game
                 if (useClocks)
                 {
                     whiteClock.isTurnToMove = board.WhiteToMove;
+                    whiteClock.OnTimerEndsEvent += OnTimerEnds;
                     blackClock.isTurnToMove = !board.WhiteToMove;
+                    blackClock.OnTimerEndsEvent += OnTimerEnds;
                 }
+            }
+        }
+
+        private void OnTimerEnds()
+        {
+            bool isWhite = board.ColourToMove == Board.WhiteIndex;
+            if (isWhite)
+            {
+                gameResult = Result.WhiteLosesInTime;
+            }
+            else
+            {
+                gameResult = Result.BlackLosesInTime;
             }
         }
 
@@ -161,8 +174,9 @@ namespace Chess.Game
             if (result == Result.Playing)
             {
                 resultUI.text = "";
+                return;
             }
-            else if (result == Result.WhiteIsMated || result == Result.BlackIsMated)
+            if (result == Result.WhiteIsMated || result == Result.BlackIsMated)
             {
                 resultUI.text = "Checkmate!";
             }
@@ -186,6 +200,11 @@ namespace Chess.Game
                 resultUI.text = "Draw";
                 resultUI.text += subtitleSettings + "\n(Insufficient material)";
             }
+            else if (result == Result.WhiteLosesInTime || result == Result.BlackLosesInTime)
+            {
+                Debug.Log("Time is expired");
+            }
+            OnGameEnds?.Invoke(result);
         }
 
         Result GetGameState()
